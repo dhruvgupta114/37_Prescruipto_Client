@@ -21,7 +21,7 @@ const Navbar = () => {
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
       <div className="flex items-center gap-2 text-xs">
         <img className="w-36 sm:w-40 cursor-pointer" src={assets.logo} alt="" />
-        <a href={`${import.meta.env.VITE_ADMIN_PAGE_URL}`}  className="border px-2.5 py-0.5 hover:bg-primary hover:text-white transition-all duration-300 text-sm rounded-full border-gray-500 text-gray-600">
+        <a href={`${import.meta.env.VITE_ADMIN_PAGE_URL}`} target="_blank" className="border px-2.5 py-0.5 hover:bg-primary hover:text-white transition-all duration-300 text-sm rounded-full border-gray-500 text-gray-600">
           Admin Panel
         </a>
       </div>
