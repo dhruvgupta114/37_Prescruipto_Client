@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const MyProfile = () => {
-  const { setUserData, userData, token, backendUrl, loadUserProfileData } =
+  const { setUserData, userData, utoken, backendUrl, loadUserProfileData } =
     useContext(AppContext);
 
   const [isEdit, setIsEdit] = useState(false);
@@ -26,7 +26,7 @@ const MyProfile = () => {
         backendUrl + "/api/user/update-profile",
         formData,
         {
-          headers: { token },
+          headers: { utoken },
         }
       );
 

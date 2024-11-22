@@ -6,8 +6,8 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
   const [doctors, setDoctors] = useState([]);
-  const [token, setToken] = useState(
-    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  const [utoken, setUToken] = useState(
+    localStorage.getItem("utoken") ? localStorage.getItem("utoken") : ""
   );
   const [userData, setUserData] = useState(false);
 
@@ -29,7 +29,7 @@ const AppContextProvider = (props) => {
   const loadUserProfileData = async () => {
     try {
       const { data } = await axios.get(backendUrl + "/api/user/get-profile", {
-        headers: { token },
+        headers: { utoken },
       });
 
       if (data.success) {
@@ -47,8 +47,8 @@ const AppContextProvider = (props) => {
   const value = {
     doctors,
     currencySymbol,
-    token,
-    setToken,
+    utoken,
+    setUToken,
     backendUrl,
     userData,
     setUserData,
@@ -61,12 +61,12 @@ const AppContextProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    if (token) {
+    if (utoken) {
       loadUserProfileData();
     } else {
       setUserData(false);
     }
-  }, [token]);
+  }, [utoken]);
 
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>

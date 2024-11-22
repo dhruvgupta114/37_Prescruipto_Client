@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { backendUrl, token, setToken } = useContext(AppContext);
+  const { backendUrl, utoken, setUToken } = useContext(AppContext);
 
   const [state, setState] = useState("Sign Up");
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ const Login = () => {
         });
         if (data.success) {
           localStorage.setItem("token", data.token);
-          setToken(data.token);
+          setUToken(data.token);
           toast.success(data.message);
         } else {
           toast.error(data.message);
@@ -38,7 +38,7 @@ const Login = () => {
         });
         if (data.success) {
           localStorage.setItem("token", data.token);
-          setToken(data.token);
+          setUToken(data.token);
           toast.success(data.message);
         } else {
           toast.error(data.message);
@@ -50,10 +50,10 @@ const Login = () => {
   };
 
   useEffect(()=>{
-    if(token){
+    if(utoken){
       navigate("/")
     }
-  },[token])
+  },[utoken])
 
   return (
     <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center]">

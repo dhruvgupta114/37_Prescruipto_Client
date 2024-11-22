@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const MyAppointment = () => {
-  const { backendUrl, token, getDoctorsData } = useContext(AppContext);
+  const { backendUrl, utoken, getDoctorsData } = useContext(AppContext);
   const [appointments, setAppointments] = useState([]);
 
   const months = [
@@ -36,7 +36,7 @@ const MyAppointment = () => {
   const getUserAppointments = async () => {
     try {
       const { data } = await axios.get(backendUrl + "/api/user/appointments", {
-        headers: { token },
+        headers: { utoken },
       });
       if (data.success) {
         setAppointments(data.appointments.reverse());
@@ -52,7 +52,7 @@ const MyAppointment = () => {
         backendUrl + "/api/user/cancel-appointment",
         { appointmentId },
         {
-          headers: { token },
+          headers: { utoken },
         }
       );
       if (data.success) {
@@ -82,7 +82,7 @@ const MyAppointment = () => {
           const { data } = await axios.post(
             backendUrl + "/api/user/verifyRazorpay",
             response ,
-            { headers: { token } }
+            { headers: { utoken } }
           );
           if (data.success) {
             getUserAppointments();
@@ -104,7 +104,7 @@ const MyAppointment = () => {
         backendUrl + "/api/user/payment-razorpay",
         { appointmentId },
         {
-          headers: { token },
+          headers: { utoken },
         }
       );
       // console.log(data);
@@ -119,10 +119,10 @@ const MyAppointment = () => {
   };
 
   useEffect(() => {
-    if (token) {
+    if (utoken) {
       getUserAppointments();
     }
-  }, [token]);
+  }, [utoken]);
 
   return (
     <div>

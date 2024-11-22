@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Appointment = () => {
   const { docId } = useParams();
-  const { doctors, currencySymbol, backendUrl, token, getDoctorsData } = useContext(AppContext);
+  const { doctors, currencySymbol, backendUrl, utoken, getDoctorsData } = useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const navigate = useNavigate()
   const [docInfo, setDocInfo] = useState(null);
@@ -75,7 +75,7 @@ const Appointment = () => {
   };
 
   const bookAppointment = async() =>{
-    if(!token){
+    if(!utoken){
       toast.warn("Login to book appointment")
       return navigate("/login")
     }
@@ -89,7 +89,7 @@ const Appointment = () => {
       const {data} = await axios.post(backendUrl+"/api/user/book-appointment", {
         docId,slotDate,slotTime
       }, {
-        headers: {token}
+        headers: {utoken}
       })
       if(data.success){
         toast.success(data.message)
