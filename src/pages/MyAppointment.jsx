@@ -169,6 +169,7 @@ const MyAppointment = () => {
                   onClick={() => appointmentRazorpay(item._id)}
                   className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300"
                 >
+                  <p className="text-xs text-center p-2 text-red-600">Use this CARD no. 5267 3181 8797 5449 <br />  Random Cvv,<br /> any future date for expiry</p>
                   Pay Online
                 </button>
               )}
